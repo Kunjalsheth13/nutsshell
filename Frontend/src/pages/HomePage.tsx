@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { FaShoppingCart, FaStar } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 
 interface Product {
   id: number;
