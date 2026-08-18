@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { FaHeart, FaStar, FaShoppingCart, FaCheckCircle, FaGlobe, FaCertificate } from 'react-icons/fa';
+import { FaHeart, FaStar, FaShoppingCart, FaCheckCircle, FaGlobe, FaCertificate, FaShieldAlt } from 'react-icons/fa';
 
 interface Product {
   id: number;
@@ -199,7 +199,7 @@ const HomePage: React.FC = () => {
       {/* Our Story */}
       <section style={styles.storySection}>
         <div style={styles.storyImageContainer}>
-          <img src="https://images.unsplash.com/photo-1596591606975-97ee5cef3a1e?q=80&w=800&auto=format&fit=crop" style={styles.storyImage} />
+          <img src="https://images.unsplash.com/photo-1596591606975-97ee5cef3a1e?q=80&w=800&auto=format&fit=crop" alt="Our Story" style={styles.storyImage} />
         </div>
         <div style={styles.storyContent}>
           <h4 style={styles.sectionSub}>OUR STORY</h4>
