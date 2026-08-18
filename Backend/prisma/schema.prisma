@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id            Int             @id @default(autoincrement())
+  name          String          @unique
+  subCategories SubCategory[]
+  products      Product[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
+model SubCategory {
+  id         Int       @id @default(autoincrement())
+  name       String
+  categoryId Int
+  category   Category  @relation(fields: [categoryId], references: [id])
+  products   Product[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@unique([name, categoryId])
+}
+
+model Product {
+  id            Int          @id @default(autoincrement())
+  name          String
+  description   String?
+  price         Float
+  discount      Float        @default(0) // Discount percentage or amount
+  imageUrl      String?      // Cloudinary image URL
+  categoryId    Int
+  category      Category     @relation(fields: [categoryId], references: [id])
+  subCategoryId Int?
+  subCategory   SubCategory? @relation(fields: [subCategoryId], references: [id])
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model CarouselImage {
+  id        Int      @id @default(autoincrement())
+  imageUrl  String   // Cloudinary image URL
+  title     String?
+  link      String?  // Optional link when clicking the carousel
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AdminUser {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
